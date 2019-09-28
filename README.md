@@ -1,14 +1,15 @@
-# Template Repository
-This is a template, please fill it with your teams data. Places to fill in data are marked with a //TODO. If you fail to do so, our jury can't evaluate your project. 
+# Stay Fresh
 
 ## Description 
-//TODO: describe your project
+This project aims to increase the quality of life of people living in urban areas.
 
 ## Built with
-//TODO: lists the technologies you use and their purpose
+- Flask
+- Bootstrap
 
 ## What benefit will your work bring in smart city context?
-//TODO: list benefits and tell us your motivation in working on this topic
+The Stay Fresh project helps in enhancing the air quality of rooms by giving advice on either opening the windows to let
+fresh air in or when it would be a good idea to keep the windows closed.
 
 ## What were challenges you encountered and Lessons Learned?
 //TODO: describe challenges you encountered and how you solved them. also name your lessons learned
