@@ -12,14 +12,17 @@
 </head>
 
 <body>
+
+
     <div class="rahmen">
 
         <nav class="row site-header py-1 bg-success">
-            <!-- 
-        <div class="container d-flex flex-column flex-md-row justify-content-around">
-            <a class="py-2 d-none d-md-inline-block mr-5" href="#">Luftqualität Stadt</a>
-            <a class="py-2 d-none d-md-inline-block" href="#">Luftqualität Raum</a>
-        </div>-->
+
+            <div class="container d-flex flex-column flex-md-row">
+                <img width="200px" src="./img/stay-fresh_weiß.png" alt="">
+                <a class="py-2 d-none d-md-inline-block mr-5" href="#"></a>
+                <a class="py-2 d-none d-md-inline-block" href="#"></a>
+            </div>
         </nav>
         <div class="row">
             <div class="col-12">
@@ -37,7 +40,7 @@
                             <tr align="center" style="font-size:20px">
                                 <th>NO2 [µg/m3]</th>
                                 <th>PM10 [µg/m3]</th>
-                                <th>Platzhalter</th>
+
                             </tr>
                         </thead>
                         <tbody>
@@ -45,7 +48,7 @@
                             <tr align="center" class="display-4">
                                 <td id="extern_no2"></td>
                                 <td id="extern_pm10"></td>
-                                <td>11</td>
+
                             </tr>
 
                         </tbody>
@@ -152,8 +155,8 @@
             r1Temp.innerText = data.intern[0].temp + " °C";
             r1hum.innerText = data.intern[0].hum + " %";
             r1co2.innerText = data.intern[0].co2 + " ppm";
-            changeNose(nose1, data.intern[0].co2);
-            changeNose(nose2, data.intern[1].co2)
+            changeNose(nose1, data.intern[0].co2, data.intern[0].voc);
+            changeNose(nose2, data.intern[1].co2, data.intern[1].voc);
             r1voc.innerText = data.intern[0].voc + " ppb";
             r2hum.innerText = data.intern[1].hum + " %";
             r2temp.innerText = data.intern[1].temp + " °C";
@@ -175,11 +178,11 @@
                 pic.src = "./img/bad_bg_schmal.png";
             }
         }
-        function changeNose(nose, co2_data) {
-            if (co2_data <= 1000) {
+        function changeNose(nose, co2_data, voc_data) {
+            if (co2_data <= 1000 || voc_data <= 500) {
                 nose.src = "./img/nasegut.png";
             }
-            else if (co2_data > 1000 && co2_data <= 2000) {
+            else if (co2_data > 1000 && co2_data < 2000 || voc_data > 500 && voc_data < 1100) {
                 nose.src = "./img/mittel.png";
             }
             else {
