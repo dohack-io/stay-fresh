@@ -43,9 +43,9 @@
                     <div><img class="img-fluid" src="./img/thermometer.png"><strong class="display-4"
                             id="r1_temp"></strong>
                     </div>
-                    <div><img class="img-fluid" src="./img/CO2.png"> <strong class="display-4"> 500 ppm</strong>
+                    <div><img class="img-fluid" src="./img/CO2.png"> <strong class="display-4" id="r1_co2"></strong>
                     </div>
-                    <div><img class="img-fluid" src="./img/VOC.png"> <strong class="display-4"> 45 ppb</strong>
+                    <div><img class="img-fluid" src="./img/VOC.png"> <strong class="display-4" id="r1_voc"></strong>
                     </div>
                 </div>
             </div>
@@ -57,13 +57,15 @@
                         <img class="img-fluid" src="./img/nasegut.png" alt="" srcset="">
                 </div>
                 <div class="col-8 parameter-list d-flex flex-column">
-                    <div><img class="img-fluid" src="./img/tropfen.png"><strong class="display-4">100%</strong> </div>
+                    <div><img class="img-fluid" src="./img/tropfen.png"><strong class="display-4" id="r2_hum"></strong>
+                    </div>
 
-                    <div><img class="img-fluid" src="./img/thermometer.png"><strong class="display-4">50°C</strong>
+                    <div><img class="img-fluid" src="./img/thermometer.png"><strong class="display-4"
+                            id="r2_temp"></strong>
                     </div>
-                    <div><img class="img-fluid" src="./img/CO2.png"> <strong class="display-4">500 ppm </strong>
+                    <div><img class="img-fluid" src="./img/CO2.png"> <strong class="display-4" id="r2_co2"></strong>
                     </div>
-                    <div><img class="img-fluid" src="./img/VOC.png"> <strong class="display-4"> 45 ppb</strong>
+                    <div><img class="img-fluid" src="./img/VOC.png"> <strong class="display-4" id="r2_voc"></strong>
                     </div>
                 </div>
             </div>
@@ -96,10 +98,22 @@
         console.log("Elemente finden!");
         const r1Temp = document.getElementById("r1_temp");
         const r1hum = document.getElementById("r1_hum");
+        const r1co2 = document.getElementById("r1_co2");
+        const r1voc = document.getElementById("r1_voc");
+        const r2hum = document.getElementById("r2_hum");
+        const r2temp = document.getElementById("r2_temp");
+        const r2co2 = document.getElementById("r2_co2");
+        const r2voc = document.getElementById("r2_voc");
         function updateData(data) {
             console.log("Daten aktualisieren")
             r1Temp.innerText = data.intern[0].temp + " °C";
             r1hum.innerText = data.intern[0].hum + " %";
+            r1co2.innerText = data.intern[0].co2 + " ppm";
+            r1voc.innerText = data.intern[0].voc + " ppb";
+            r2hum.innerText = data.intern[1].hum + " %";
+            r2temp.innerText = data.intern[1].temp + " °C";
+            r2co2.innerText = data.intern[1].co2 + " ppm";
+            r2voc.innerText = data.intern[1].voc + " ppb";
         }
 
 
