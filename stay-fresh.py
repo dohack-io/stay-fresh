@@ -1,10 +1,12 @@
-import sqlite3
-connection = sqlite3.connect('sqlite3_freshair.db')
-cursor = connection.cursor
+#import sqlite3
+#connection = sqlite3.connect('sqlite3_freshair.db')
+#cursor = connection.cursor()
 from urllib import request
 import ssl; ssl._create_default_https_context = ssl._create_unverified_context
 
 #erstellen der Datenbank
+#cursor.execute('Create TABLE Tageswerte(Ort TEXT, ID INTEGER PRIMARY KEY, Zeit DATETIME, NO INTEGER, PM10 INTEGER)')
+#cursor.execute('INSERT INTO Tageswerte VALUES(?, ?)', ('Moskau', 311, 2019, 23, 44))
 
 url = "https://www.lanuv.nrw.de/fileadmin/lanuv/luft/immissionen/aktluftqual/eu_luftqualitaet.csv"
 url2 = "https://www.opengeodata.nrw.de/produkte/umwelt_klima/luftqualitaet/luqs/konti_nach_station/OpenKontiLUQS_VDOM_aktuell.csv"
