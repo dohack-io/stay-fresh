@@ -54,7 +54,7 @@
             </div>
 
             <div class="col-6">
-                <img class="img-fluid" src="./img/bad_bg_schmal.png" alt="">
+                <img id="bild_aussen" class="img-fluid" src="" alt="">
             </div>
 
         </div>
@@ -86,7 +86,7 @@
                 <div class="row">
                     <div class="col-4">
                         <h2 class="room-head">Raum 2</h3>
-                            <img class="img-fluid" src="./img/nasegut.png" alt="" srcset="">
+                            <img id="nase2" class="img-fluid" src="" alt="" srcset="">
                     </div>
                     <div class="col-8 parameter-list d-flex flex-column">
                         <div><img class="img-fluid" src="./img/tropfen.png"><strong class="display-4"
@@ -142,6 +142,8 @@
         const externno2 = document.getElementById("extern_no2");
         const externpm10 = document.getElementById("extern_pm10");
         const nose1 = document.getElementById("nase1");
+        const nose2 = document.getElementById("nase2");
+        const pic_ext = document.getElementById("bild_aussen");
 
 
 
@@ -150,7 +152,8 @@
             r1Temp.innerText = data.intern[0].temp + " °C";
             r1hum.innerText = data.intern[0].hum + " %";
             r1co2.innerText = data.intern[0].co2 + " ppm";
-            changeNose(nose1, data.intern[0].co2)
+            changeNose(nose1, data.intern[0].co2);
+            changeNose(nose2, data.intern[1].co2)
             r1voc.innerText = data.intern[0].voc + " ppb";
             r2hum.innerText = data.intern[1].hum + " %";
             r2temp.innerText = data.intern[1].temp + " °C";
@@ -158,8 +161,20 @@
             r2voc.innerText = data.intern[1].voc + " ppb";
             externno2.innerText = data.extern.no2;
             externpm10.innerText = data.extern.pm10;
+            change_pic_ext(pic_ext, data.extern.no2, data.extern.pm10);
         }
 
+        function change_pic_ext(pic, no2_data, pm10_data) {
+            if (no2_data <= 30 || pm10_data <= 30) {
+                pic.src = "./img/nice_bg_schmal.png";
+            }
+            else if (no2_data > 30 && no2_data < 100 || pm10_data > 30 && pm10_data < 50) {
+                pic.src = "./img/mittel_bg_schmal.png";
+            }
+            else {
+                pic.src = "./img/bad_bg_schmal.png";
+            }
+        }
         function changeNose(nose, co2_data) {
             if (co2_data <= 1000) {
                 nose.src = "./img/nasegut.png";
