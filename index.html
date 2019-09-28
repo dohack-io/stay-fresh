@@ -32,16 +32,19 @@
         <div class="border col-5">
             <div class="row">
                 <div class="col-4">
-                    <h3>Raum 1-1</h3>
+                    <h2>Raum 1</h2>
                     <img class="img-fluid" src="./img/nasegut.png" alt="" srcset="">
                 </div>
                 <div class="col-8 parameter-list d-flex flex-column">
-                    <h3>Raum 1-2</h3>
-                    <div><img class="img-fluid" src="./img/tropfen.png"><strong class="display-4">100%</strong> </div>
+                    <div><img class="img-fluid" src="./img/tropfen.png">
+                        <strong class="display-4" id="r1_temp"></strong>
+                    </div>
 
                     <div><img class="img-fluid" src="./img/thermometer.png"><strong class="display-4">50°C</strong>
                     </div>
-                    <div><img class="img-fluid" src="./img/CO2.png"> <strong class="display-4">500 ppm </strong>
+                    <div><img class="img-fluid" src="./img/CO2.png"> <strong class="display-4"> 500 ppm</strong>
+                    </div>
+                    <div><img class="img-fluid" src="./img/VOC.png"> <strong class="display-4"> 45 ppb</strong>
                     </div>
                 </div>
             </div>
@@ -49,16 +52,17 @@
         <div class="border col-5">
             <div class="row">
                 <div class="col-4">
-                    <h3>Raum 2-1</h3>
+                    <h3>Raum 2</h3>
                     <img class="img-fluid" src="./img/nasegut.png" alt="" srcset="">
                 </div>
                 <div class="col-8 parameter-list d-flex flex-column">
-                    <h3>Raum 2-2</h3>
                     <div><img class="img-fluid" src="./img/tropfen.png"><strong class="display-4">100%</strong> </div>
 
                     <div><img class="img-fluid" src="./img/thermometer.png"><strong class="display-4">50°C</strong>
                     </div>
                     <div><img class="img-fluid" src="./img/CO2.png"> <strong class="display-4">500 ppm </strong>
+                    </div>
+                    <div><img class="img-fluid" src="./img/VOC.png"> <strong class="display-4"> 45 ppb</strong>
                     </div>
                 </div>
             </div>
@@ -77,6 +81,28 @@
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
         integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
         crossorigin="anonymous"></script>
+    <script>
+        fetch('http://10.4.135.32:5000/get-data', {
+            method: 'get'
+        }).then(function (response
+        ) {
+            return response.json();
+        }).then(function (json) {
+            console.log("Daten übergabe");
+            updateData(json)
+        });
+
+        console.log("Elemente finden!");
+        const r1Temp = document.getElementById("r1_temp");
+
+        function updateData(data) {
+            console.log("Daten aktualisieren")
+            r1Temp.innerText = data.intern[0].temp + " °C";
+        }
+
+
+
+    </script>
 </body>
 
 </html>
