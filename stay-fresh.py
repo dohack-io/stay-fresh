@@ -1,14 +1,20 @@
-#Hier wird HTML request angefordert von wetter.online
-import requests
+from urllib import request
+import ssl; ssl._create_default_https_context = ssl._create_unverified_context
 
-url_hauptseite = "https://www.wetteronline.de/?period=101&date=&pid=p_luft_observation&pcid=pc_luft_data&sid=StationDiagram&g"
+url = "https://www.lanuv.nrw.de/fileadmin/lanuv/luft/immissionen/aktluftqual/eu_luftqualitaet.csv"
+url2 = "https://www.opengeodata.nrw.de/produkte/umwelt_klima/luftqualitaet/luqs/konti_nach_station/OpenKontiLUQS_VDOM_aktuell.csv"
 
-url_station = ["d=a4457&iid ", "id=a4457&iid"]
+# Retrieve the webpage as a string
+headers = {'User-Agent': 'Mozilla/5.0 (Windows NT 6.1)'}
+res = request.Request(url=url2, headers=headers)
 
-url_tageszeit = ["=j101&day=28&month=9&year=2019"]
+response = request.urlopen(res)
+csv = response.read()
 
-url_messwert = ["&metparaid=PM10", "&metparaid=NO" ]
+# Save the string to a file
+csvstr = str(csv).strip("b'")
 
-r = requests.get(url_hauptseite.format(url_station[0]).format(url_tageszeit[0]).format(url_messwert[0]))
-
-print(r.text)
+lines = csvstr.split("\\n")
+for line in lines:
+    print(line.split(";"))
+        
