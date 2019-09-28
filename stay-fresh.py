@@ -1,14 +1,31 @@
-#Hier wird HTML request angefordert von wetter.online
-import requests
+#import sqlite3
+#connection = sqlite3.connect('sqlite3_freshair.db')
+#cursor = connection.cursor()
+from urllib import request
+import ssl; ssl._create_default_https_context = ssl._create_unverified_context
 
-url_hauptseite = "https://www.wetteronline.de/?period=101&date=&pid=p_luft_observation&pcid=pc_luft_data&sid=StationDiagram&g"
+#erstellen der Datenbank
+#cursor.execute('Create TABLE Tageswerte(Ort TEXT, ID INTEGER PRIMARY KEY, Zeit DATETIME, NO INTEGER, PM10 INTEGER)')
+#cursor.execute('INSERT INTO Tageswerte VALUES(?, ?)', ('Moskau', 311, 2019, 23, 44))
 
-url_station = ["d=a4457&iid ", "id=a4457&iid"]
+url = "https://www.lanuv.nrw.de/fileadmin/lanuv/luft/immissionen/aktluftqual/eu_luftqualitaet.csv"
+url2 = "https://www.opengeodata.nrw.de/produkte/umwelt_klima/luftqualitaet/luqs/konti_nach_station/OpenKontiLUQS_VDOM_aktuell.csv"
 
-url_tageszeit = ["=j101&day=28&month=9&year=2019"]
+# Umgehung, um Daten von der Webseite zu holen
+headers = {'User-Agent': 'Mozilla/5.0 (Windows NT 6.1)'}
+res = request.Request(url=url, headers=headers)
 
-url_messwert = ["&metparaid=PM10", "&metparaid=NO" ]
+response = request.urlopen(res)
+csv = response.read()
 
-r = requests.get(url_hauptseite.format(url_station[0]).format(url_tageszeit[0]).format(url_messwert[0]))
+# definieren der csv-Datei als String
+csvstr = str(csv).strip("b'")
 
-print(r.text)
+#Ausgabe der Daten
+lines = csvstr.split("\\n")
+for line in lines:
+    #if "\\xd" in line
+       
+    if 'Dortmund' in line:
+        print(line.split(";"))
+        
