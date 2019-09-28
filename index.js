@@ -1,23 +1,19 @@
-var net = require('net');
+let net = require('net');
 let http = require('http');
 let fs = require('fs');
 let gpio = require('gpio');
+
+let HOST = '192.168.0.100';
+
 const request = require('request')
-
-var HOST = '192.168.0.100';
-
 
 function sendData() {
-const request = require('request')
 
-request.post(HOST, {
-  json: {
+request.post(HOST,
+  {
     id: '1',
     name: 'Neo_1',
     messwert: '12345'
-  }
-
-
   }
 }, (error, res, body) => {
   if (error) {
@@ -27,6 +23,5 @@ request.post(HOST, {
   console.log(`statusCode: ${res.statusCode}`)
   console.log(body)
 })
+setTimeout(sendData, 1000);
 }
-
-setInterval(sendData, 1000);
