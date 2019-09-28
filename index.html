@@ -85,15 +85,18 @@
         integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
         crossorigin="anonymous"></script>
     <script>
-        fetch('http://10.4.135.32:5000/get-data', {
-            method: 'get'
-        }).then(function (response
-        ) {
-            return response.json();
-        }).then(function (json) {
-            console.log("Daten übergabe");
-            updateData(json)
-        });
+        function refresh_data() {
+            fetch('http://10.4.135.32:5000/get-data', {
+                method: 'get'
+            }).then(function (response
+            ) {
+                return response.json();
+            }).then(function (json) {
+                console.log("Daten übergabe");
+                updateData(json)
+            });
+        }
+        refresh_data();
 
         console.log("Elemente finden!");
         const r1Temp = document.getElementById("r1_temp");
@@ -116,7 +119,7 @@
             r2voc.innerText = data.intern[1].voc + " ppb";
         }
 
-
+        setInterval(function () { refresh_data(); }, 3000);
 
     </script>
 </body>
