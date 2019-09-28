@@ -1,20 +1,29 @@
+import sqlite3
+connection = sqlite3.connect('sqlite3_freshair.db')
+cursor = connection.cursor
 from urllib import request
 import ssl; ssl._create_default_https_context = ssl._create_unverified_context
+
+#erstellen der Datenbank
 
 url = "https://www.lanuv.nrw.de/fileadmin/lanuv/luft/immissionen/aktluftqual/eu_luftqualitaet.csv"
 url2 = "https://www.opengeodata.nrw.de/produkte/umwelt_klima/luftqualitaet/luqs/konti_nach_station/OpenKontiLUQS_VDOM_aktuell.csv"
 
-# Retrieve the webpage as a string
+# Umgehung, um Daten von der Webseite zu holen
 headers = {'User-Agent': 'Mozilla/5.0 (Windows NT 6.1)'}
-res = request.Request(url=url2, headers=headers)
+res = request.Request(url=url, headers=headers)
 
 response = request.urlopen(res)
 csv = response.read()
 
-# Save the string to a file
+# definieren der csv-Datei als String
 csvstr = str(csv).strip("b'")
 
+#Ausgabe der Daten
 lines = csvstr.split("\\n")
 for line in lines:
-    print(line.split(";"))
+    #if "\\xd" in line
+       
+    if 'Dortmund' in line:
+        print(line.split(";"))
         
