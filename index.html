@@ -21,13 +21,17 @@
             <a class="py-2 d-none d-md-inline-block" href="#">Luftqualität Raum</a>
         </div>-->
         </nav>
+        <div class="row">
+            <div class="col-12">
+                <h2>Außenluft</h2>
+            </div>
 
+        </div>
         <div class="row">
 
             <div class="col-6">
                 <div class="container">
-                    <h2>Außenluft</h2>
-                    <p>The .table-striped class adds zebra-stripes to a table:</p>
+
                     <table class="table table-striped">
                         <thead>
                             <tr align="center" style="font-size:20px">
@@ -39,8 +43,8 @@
                         <tbody>
 
                             <tr align="center" class="display-4">
-                                <td>45 </td>
-                                <td>12 </td>
+                                <td id="extern_no2"></td>
+                                <td id="extern_pm10"></td>
                                 <td>11</td>
                             </tr>
 
@@ -49,7 +53,9 @@
                 </div>
             </div>
 
-            <div class="col-6"></div>
+            <div class="col-6">
+                <img class="img-fluid" src="./img/bad_bg_schmal.png" alt="">
+            </div>
 
         </div>
         <div class="row">
@@ -57,7 +63,7 @@
                 <div class="row">
                     <div class="col-4">
                         <h2 class="room-head">Raum 1</h2>
-                        <img class="img-fluid" src="./img/nasegut.png" alt="" srcset="">
+                        <img id="nase1" class="img-fluid" src="" alt="" srcset="">
                     </div>
                     <div class="col-8 parameter-list d-flex flex-column">
                         <div><img class="img-fluid" src="./img/tropfen.png">
@@ -133,16 +139,37 @@
         const r2temp = document.getElementById("r2_temp");
         const r2co2 = document.getElementById("r2_co2");
         const r2voc = document.getElementById("r2_voc");
+        const externno2 = document.getElementById("extern_no2");
+        const externpm10 = document.getElementById("extern_pm10");
+        const nose1 = document.getElementById("nase1");
+
+
+
         function updateData(data) {
             console.log("Daten aktualisieren")
             r1Temp.innerText = data.intern[0].temp + " °C";
             r1hum.innerText = data.intern[0].hum + " %";
             r1co2.innerText = data.intern[0].co2 + " ppm";
+            changeNose(nose1, data.intern[0].co2)
             r1voc.innerText = data.intern[0].voc + " ppb";
             r2hum.innerText = data.intern[1].hum + " %";
             r2temp.innerText = data.intern[1].temp + " °C";
             r2co2.innerText = data.intern[1].co2 + " ppm";
             r2voc.innerText = data.intern[1].voc + " ppb";
+            externno2.innerText = data.extern.no2;
+            externpm10.innerText = data.extern.pm10;
+        }
+
+        function changeNose(nose, co2_data) {
+            if (co2_data <= 1000) {
+                nose.src = "./img/nasegut.png";
+            }
+            else if (co2_data > 1000 && co2_data <= 2000) {
+                nose.src = "./img/mittel.png";
+            }
+            else {
+                nose.src = "./img/naseschlecht.png";
+            }
         }
 
         setInterval(function () { refresh_data(); }, 3000);
