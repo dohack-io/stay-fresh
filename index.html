@@ -50,14 +50,7 @@
 
     <div class="rahmen">
 
-        <!--<nav class="row site-header py-1 bg-success">
 
-            <div class="container d-flex flex-column flex-md-row">
-                <img width="200px" src="./img/stay-fresh_weiß.png" alt="">
-                <a class="py-2 d-none d-md-inline-block mr-5" href="#"></a>
-                <a class="py-2 d-none d-md-inline-block" href="#"></a>
-            </div>
-        </nav> -->
         <div class="row">
             <div class="col-12">
                 <h2>Außenluft</h2>
@@ -74,6 +67,8 @@
                             <tr align="center" style="font-size:20px">
                                 <th>NO2 [µg/m3]</th>
                                 <th>PM10 [µg/m3]</th>
+                                <th>Hum. [%]</th>
+                                <th>Temp. [°C]</th>
 
                             </tr>
                         </thead>
@@ -82,6 +77,8 @@
                             <tr align="center" class="display-4">
                                 <td id="extern_no2"></td>
                                 <td id="extern_pm10"></td>
+                                <td id="extern_hum"></td>
+                                <td id="extern_temp"></td>
 
                             </tr>
 
@@ -143,6 +140,16 @@
         </div>
     </div>
 
+    <div class="row">
+        <div class="border col-6">
+            <h4 id="Text1">Ermittle Empfehlung...</h4>
+        </div>
+        <div class="border col-6">
+            <h4 id="Text2">Ermittle Empfehlung...</h4>
+        </div>
+
+    </div>
+
 
     <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
         integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
@@ -154,6 +161,8 @@
         integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
         crossorigin="anonymous"></script>
     <script>
+
+
         function refresh_data() {
             fetch('http://10.4.135.32:5000/get-data', {
                 method: 'get'
@@ -164,6 +173,19 @@
                 console.log("Daten übergabe");
                 updateData(json)
             });
+
+            if (ZAussen >= ZRaum1) {
+                document.getElementById("Text1").innerHTML = "Fenster öffnen";
+            } else {
+                document.getElementById("Text1").innerHTML = "Fenster schließen";
+            }
+
+
+            if (ZAussen >= ZRaum2) {
+                document.getElementById("Text2").innerHTML = "Fenster öffnen";
+            } else {
+                document.getElementById("Text2").innerHTML = "Fenster schließen";
+            }
         }
         refresh_data();
 
@@ -181,6 +203,12 @@
         const nose1 = document.getElementById("nase1");
         const nose2 = document.getElementById("nase2");
         const pic_ext = document.getElementById("bild_aussen");
+        const exthum = document.getElementById("extern_hum");
+        const exttemp = document.getElementById("extern_temp");
+
+        var ZRaum1 = 0;
+        var ZRaum2 = 0;
+        var ZAussen = 0;
 
 
 
@@ -199,30 +227,51 @@
             externno2.innerText = data.extern.no2;
             externpm10.innerText = data.extern.pm10;
             change_pic_ext(pic_ext, data.extern.no2, data.extern.pm10);
+            exthum.innerText = data.extern.hum;
+            exttemp.innerText = data.extern.temp;
         }
 
         function change_pic_ext(pic, no2_data, pm10_data) {
             if (no2_data <= 30 || pm10_data <= 30) {
                 pic.src = "./img/nice_bg_schmal.png";
+                ZAussen = 3;
             }
             else if (no2_data > 30 && no2_data < 100 || pm10_data > 30 && pm10_data < 50) {
                 pic.src = "./img/mittel_bg_schmal.png";
+                ZAussen = 2;
             }
             else {
                 pic.src = "./img/bad_bg_schmal.png";
+                ZAussen = 1;
             }
         }
         function changeNose(nose, co2_data, voc_data) {
             if (co2_data <= 1000 || voc_data <= 500) {
                 nose.src = "./img/nasegut.png";
+                if (nose == nose1) {
+                    ZRaum1 = 3;
+                } else {
+                    ZRaum2 = 3;
+                }
             }
             else if (co2_data > 1000 && co2_data < 2000 || voc_data > 500 && voc_data < 1100) {
                 nose.src = "./img/mittel.png";
+                if (nose == nose1) {
+                    ZRaum1 = 2;
+                } else {
+                    ZRaum2 = 2;
+                }
             }
             else {
                 nose.src = "./img/naseschlecht.png";
+                if (nose == nose1) {
+                    ZRaum1 = 1;
+                } else {
+                    ZRaum2 = 1;
+                }
             }
         }
+
 
         setInterval(function () { refresh_data(); }, 3000);
 
