@@ -1,3 +1,234 @@
-<html>
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>stay-fresh</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+        integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+
+
+
+
+    <nav class="navbar navbar-expand-md navbar-dark fixed-top bg-dark">
+        <a class="navbar-brand" href="#">
+            <font color="limegreen">Stay</font>-fresh
+        </a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarsExampleDefault"
+            aria-controls="navbarsExampleDefault" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+
+        <div class="collapse navbar-collapse" id="navbarsExampleDefault">
+            <ul class="navbar-nav mr-auto">
+
+                <li class="nav-item active">
+                    <a class="nav-link" href="#">Home <span class="sr-only">(current)</span></a>
+                </li>
+
+                <li class="nav-item active">
+                    <a class="nav-link" href="ueber.html">Über <span class="sr-only">(current)</span></a>
+                </li>
+
+
+
+            </ul>
+
+        </div>
+    </nav>
+
+
+
+
+
+    <div class="rahmen">
+
+        <!--<nav class="row site-header py-1 bg-success">
+
+            <div class="container d-flex flex-column flex-md-row">
+                <img width="200px" src="./img/stay-fresh_weiß.png" alt="">
+                <a class="py-2 d-none d-md-inline-block mr-5" href="#"></a>
+                <a class="py-2 d-none d-md-inline-block" href="#"></a>
+            </div>
+        </nav> -->
+        <div class="row">
+            <div class="col-12">
+                <h2>Außenluft</h2>
+            </div>
+
+        </div>
+        <div class="row">
+
+            <div class="col-6">
+                <div class="container">
+
+                    <table class="table table-striped">
+                        <thead>
+                            <tr align="center" style="font-size:20px">
+                                <th>NO2 [µg/m3]</th>
+                                <th>PM10 [µg/m3]</th>
+
+                            </tr>
+                        </thead>
+                        <tbody>
+
+                            <tr align="center" class="display-4">
+                                <td id="extern_no2"></td>
+                                <td id="extern_pm10"></td>
+
+                            </tr>
+
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+
+            <div class="col-6">
+                <img id="bild_aussen" class="img-fluid" src="" alt="">
+            </div>
+
+        </div>
+        <div class="row">
+            <div class="border col-6">
+                <div class="row">
+                    <div class="col-4">
+                        <h2 class="room-head">Raum 1</h2>
+                        <img id="nase1" class="img-fluid" src="" alt="" srcset="">
+                    </div>
+                    <div class="col-8 parameter-list d-flex flex-column">
+                        <div><img class="img-fluid" src="./img/tropfen.png">
+                            <strong class="display-4" id="r1_hum"></strong>
+                        </div>
+
+                        <div><img class="img-fluid" src="./img/thermometer.png"><strong class="display-4"
+                                id="r1_temp"></strong>
+                        </div>
+                        <div><img class="img-fluid" src="./img/CO2.png"> <strong class="display-4" id="r1_co2"></strong>
+                        </div>
+                        <div><img class="img-fluid" src="./img/VOC.png"> <strong class="display-4" id="r1_voc"></strong>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+
+            <div class="border col-6">
+                <div class="row">
+                    <div class="col-4">
+                        <h2 class="room-head">Raum 2</h3>
+                            <img id="nase2" class="img-fluid" src="" alt="" srcset="">
+                    </div>
+                    <div class="col-8 parameter-list d-flex flex-column">
+                        <div><img class="img-fluid" src="./img/tropfen.png"><strong class="display-4"
+                                id="r2_hum"></strong>
+                        </div>
+
+                        <div><img class="img-fluid" src="./img/thermometer.png"><strong class="display-4"
+                                id="r2_temp"></strong>
+                        </div>
+                        <div><img class="img-fluid" src="./img/CO2.png"> <strong class="display-4" id="r2_co2"></strong>
+                        </div>
+                        <div><img class="img-fluid" src="./img/VOC.png"> <strong class="display-4" id="r2_voc"></strong>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
+        integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
+        crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"
+        integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1"
+        crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
+        integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
+        crossorigin="anonymous"></script>
+    <script>
+        function refresh_data() {
+            fetch('/get-data', {
+                method: 'get'
+            }).then(function (response
+            ) {
+                return response.json();
+            }).then(function (json) {
+                console.log("Daten übergabe");
+                updateData(json)
+            });
+        }
+        refresh_data();
+
+        console.log("Elemente finden!");
+        const r1Temp = document.getElementById("r1_temp");
+        const r1hum = document.getElementById("r1_hum");
+        const r1co2 = document.getElementById("r1_co2");
+        const r1voc = document.getElementById("r1_voc");
+        const r2hum = document.getElementById("r2_hum");
+        const r2temp = document.getElementById("r2_temp");
+        const r2co2 = document.getElementById("r2_co2");
+        const r2voc = document.getElementById("r2_voc");
+        const externno2 = document.getElementById("extern_no2");
+        const externpm10 = document.getElementById("extern_pm10");
+        const nose1 = document.getElementById("nase1");
+        const nose2 = document.getElementById("nase2");
+        const pic_ext = document.getElementById("bild_aussen");
+
+
+
+        function updateData(data) {
+            console.log("Daten aktualisieren")
+            r1Temp.innerText = data.intern[0].temp + " °C";
+            r1hum.innerText = data.intern[0].hum + " %";
+            r1co2.innerText = data.intern[0].co2 + " ppm";
+            changeNose(nose1, data.intern[0].co2, data.intern[0].voc);
+            changeNose(nose2, data.intern[1].co2, data.intern[1].voc);
+            r1voc.innerText = data.intern[0].voc + " ppb";
+            r2hum.innerText = data.intern[1].hum + " %";
+            r2temp.innerText = data.intern[1].temp + " °C";
+            r2co2.innerText = data.intern[1].co2 + " ppm";
+            r2voc.innerText = data.intern[1].voc + " ppb";
+            externno2.innerText = data.extern.no2;
+            externpm10.innerText = data.extern.pm10;
+            change_pic_ext(pic_ext, data.extern.no2, data.extern.pm10);
+        }
+
+        function change_pic_ext(pic, no2_data, pm10_data) {
+            if (no2_data <= 30 || pm10_data <= 30) {
+                pic.src = "./img/nice_bg_schmal.png";
+            }
+            else if (no2_data > 30 && no2_data < 100 || pm10_data > 30 && pm10_data < 50) {
+                pic.src = "./img/mittel_bg_schmal.png";
+            }
+            else {
+                pic.src = "./img/bad_bg_schmal.png";
+            }
+        }
+        function changeNose(nose, co2_data, voc_data) {
+            if (co2_data <= 1000 || voc_data <= 500) {
+                nose.src = "./img/nasegut.png";
+            }
+            else if (co2_data > 1000 && co2_data < 2000 || voc_data > 500 && voc_data < 1100) {
+                nose.src = "./img/mittel.png";
+            }
+            else {
+                nose.src = "./img/naseschlecht.png";
+            }
+        }
+
+        setInterval(function () { refresh_data(); }, 3000);
+
+    </script>
+    </div>
+
+</body>
 
 </html>
