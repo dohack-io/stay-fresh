@@ -246,7 +246,7 @@
             }
         }
         function changeNose(nose, co2_data, voc_data) {
-            if (co2_data <= 1000 || voc_data <= 500) {
+            if (co2_data <= 1000) {
                 nose.src = "./img/nasegut.png";
                 if (nose == nose1) {
                     ZRaum1 = 3;
@@ -254,7 +254,7 @@
                     ZRaum2 = 3;
                 }
             }
-            else if (co2_data > 1000 && co2_data < 2000 || voc_data > 500 && voc_data < 1100) {
+            else if (co2_data > 1000 && co2_data < 2000) {
                 nose.src = "./img/mittel.png";
                 if (nose == nose1) {
                     ZRaum1 = 2;
