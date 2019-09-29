@@ -12,16 +12,20 @@ The Stay Fresh project helps in enhancing the air quality of rooms by giving adv
 fresh air in or when it would be a good idea to keep the windows closed.
 
 ## What were challenges you encountered and Lessons Learned?
-//TODO: describe challenges you encountered and how you solved them. also name your lessons learned
+No experience with NodeJS and web development, networking errors
 
 ## About your team
-//TODO: describe each team member with their background knowledge
+- Benjamin: Basic web development and Python, C++
+- Carla: Gimp
+- Christian: Powerpoint and mental support :)
+- Lorena: Very basic HTML and C++
+- Richard: Basic web development and Python, C++
 
 ## What's next for your project?
-//TODO: is there anything you've planned to work on after this hackathon? you've got some ideas of features to add? 
+More automation, better stability, better data acquisition
 
 ## How does it look?
-//TODO: got any screenshots? post them here!
+![Alt text](screenshot.png?raw=true "Screenshot")
 
 ## Anything to add?
 //TODO: add additional information. Is there soemthing you couldn't mention before? Do you have some videos or demos of your project?
