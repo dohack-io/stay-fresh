@@ -2,9 +2,14 @@ import random
 from datetime import datetime
 from flask import Flask, request, send_from_directory, jsonify
 from flask_cors import CORS
+from temp_u_hum import TempHum
+from no_u_pm import NoPm
 
 app = Flask(__name__)
 cors = CORS(app)
+
+th = TempHum()
+np = NoPm()
 
 room_1 = {
     'id': "",
@@ -34,13 +39,21 @@ def root():
 
 @app.route('/get-data')
 def get_data():
+    th_data = th.get_data()
+    np_data = np.get_data()
     return_data = {
         'extern': {
             'id': "STAT1",
             'name': "Station 1",
             'date_time': datetime.now().strftime('%Y-%m-%d %H:%M:%S'),
             'no2': random.randint(15, 200),
-            'pm10': random.randint(20, 70)
+            'pm10': random.randint(20, 70),
+            'temp': random.randint(0, 45),
+            'hum': random.randint(20, 100)
+            # 'no2': np_data['no2'],
+            # 'pm10': np_data['pm10'],
+            # 'temp': th_data['temp'],
+            # 'hum': th_data['hum']
         },
         'intern': room_list
     }
