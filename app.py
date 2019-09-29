@@ -5,7 +5,7 @@ from flask_cors import CORS
 from temp_u_hum import TempHum
 from no_u_pm import NoPm
 
-app = Flask(__name__)
+app = Flask(__name__, static_url_path='', static_folder='')
 cors = CORS(app)
 
 th = TempHum()
@@ -34,7 +34,7 @@ room_list = [room_1, room_2]
 
 @app.route('/')
 def root():
-    return send_from_directory('', 'index.html')
+    return app.send_static_file('index.html')
 
 
 @app.route('/get-data')
