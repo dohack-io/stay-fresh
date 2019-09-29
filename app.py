@@ -14,19 +14,19 @@ np = NoPm()
 room_1 = {
     'id': "",
     'name': "",
-    'co2': 0,
-    'hum': 0,
-    'voc': 0,
-    'tmp': 0
+    'co2': 500,
+    'hum': 80,
+    'voc': 500,
+    'tmp': 20
 }
 
 room_2 = {
     'id': "",
     'name': "",
-    'co2': 0,
-    'hum': 0,
-    'voc': 0,
-    'tmp': 0
+    'co2': 500,
+    'hum': 80,
+    'voc': 500,
+    'tmp': 20
 }
 
 room_list = [room_1, room_2]
